@@ -1,0 +1,8 @@
+**/.*
+!.gitignore
+node_modules/**
+bower_components/**
+/_config.js
+build/**
+cache/**
+dist/**

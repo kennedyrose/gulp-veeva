@@ -1,0 +1,11 @@
+
+
+
+TASKS:
+watch: watches files for changes and sends to dist
+dist: builds dist folder w/o zip links or zip files
+build: changes links to zip and zips up each folder
+
+NOTES:
+- just copy files, never merge
+
