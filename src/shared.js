@@ -4,6 +4,9 @@
 	var i
 
 
+
+
+
 	// Self hiders toggle hide when clicked
 	var selfHiders = d.querySelectorAll('.selfHide')
 	for(i = selfHiders.length; i--;){
@@ -54,6 +57,11 @@
 
 
 
+
+
+
+
+
 	// Stop Document Scrolling
 	var xStart, yStart = 0;
 	d.addEventListener('touchstart',function(e) {
@@ -71,4 +79,6 @@
 
 	// Initiate Fastclick
 	FastClick.attach(d.body)
+
+
 }(window,document)

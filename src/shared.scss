@@ -24,13 +24,6 @@ img{
 .hide{
 	display: none !important;
 }
-#tapArea{
-	position: absolute;
-	z-index: 8;
-	width: 100%;
-	height: 640px;
-	top: 60px;
-}
 
 
 // Menu buttons
@@ -81,17 +74,21 @@ $menu-button-w: 156px;
 
 // Popups
 .pop{
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 1024px;
-	height: 768px;
 	position: absolute;
-	z-index: -1;
 	opacity: 0;
-	-webkit-transition: opacity .3s;
-	transition: opacity .3s;
+	top: 0;
+	left: 0;
+	z-index: 10;
 }
 
+// Layers
+.layer{
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
 
 
 // Buttons
