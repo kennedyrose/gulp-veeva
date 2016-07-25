@@ -1,0 +1,40 @@
+block vars
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(name='viewport' content='width=device-width, initial-scale=1.0')
+		link(rel='stylesheet' type='text/css' href='shared.css')
+		link(rel='stylesheet' type='text/css' href='style.css')
+		
+	body(class=bodyClass)
+
+
+
+		#slide(style="background-image:url('img/bg.jpg')")
+
+			#menu
+				a.btn#mnu1(href="./01")
+				a.btn#mnu2(href="./02")
+				a.btn#mnu3(href="./03")
+				a.btn#mnu4(href="./05")
+				a.btn#mnu5(href="./07")
+				a.btn#mnu6(href="./08")
+
+
+			block content
+
+			#tapArea
+
+			.btn#refBtn(data-toggle='#ref')
+			img#ref.hide.selfHide(src="img/ref.png")
+
+
+		// Footer start
+		script(src="shared.js")
+		script(src="script.js")
+		// Footer end
+
+
+

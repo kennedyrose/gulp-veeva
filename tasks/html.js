@@ -2,29 +2,37 @@
 'use strict'
 module.exports = function(gulp, config, plugins){
 
-	function html(cb, prod){
+	var onError = {
+		errorHandler: function(err) {
+			util.log(util.colors.red(err))
+			this.emit('end')
+			gulp.src('')
+				.pipe(notify('ERROR!!!'))
+			
+		}
+	}
+
+
+
+
+
+	gulp.task('html', function(cb){
 
 		gulp.src([
 				config.src + '/**/*.pug',
 				'!' + config.src + '/**/_*.pug',
 			])
 			.pipe(plumber(onError))
-			.pipe(pug(prod ? null : {pretty: '\t'}))
-			.pipe(gulpif(prod, plugins.htmlmin({
-				removeOptionalTags: true,
-				removeComments: true
-			})))
+			.pipe(pug({pretty: '\t'}))
+			.pipe(rename(function(path){
+				path.basename = config.veeva.id + path.dirname
+				path.dirname = config.veeva.id + path.dirname
+			}))
 			.pipe(gulp.dest(config.dist))
 			.on('end', cb)
-			.pipe(notify("Pug processed for " + (prod ? 'production' : 'development')))
+			.pipe(notify("Pug processed"))
 			
-	}
-
-	gulp.task('htmlprod', function(cb){
-		html(cb, true)
 	})
-
-	gulp.task('html', html)
 
 
 

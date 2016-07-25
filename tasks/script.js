@@ -13,64 +13,43 @@ module.exports = function(gulp, config, plugins){
 	}
 
 
-	function script(cb, prod){
-
-		// Create bower stream
-		var bower = gulp.src(mainBowerFiles())
-			.pipe(filter('**/*.js'))
-			.pipe(gulpif(!prod, sourcemaps.init()))
-			.pipe(concat('bower.js'))
-
-		// Create src stream
-		var src = gulp.src([
-				config.src + '/' + config.script + '/**/!(init)*.js',
-				config.src + '/' + config.script + '/**/init.js',
-			])
-			.pipe(plumber(onError))
-			.pipe(eslint())
-			.pipe(eslint.format())
-			.pipe(eslint.failAfterError())
-			.pipe(gulpif(!prod, sourcemaps.init()))
-			.pipe(concat('src.js'))
-			.pipe(wrapJs("!function(w,d,u){'use strict';%= body %}(window,document)"))
-
-		// Merge bower and script
-		var all = merge(bower, src)
-			.pipe(order([
-				'bower.js',
-				'src.js',
-			]))
-			.pipe(concat('all.js'))
-
-		// Create polyfill stream
-		var polyfills = all
-			.pipe(autopolyfiller('polyfills.js'), {
-				browsers: config.browsers
-			})
-			.pipe(gulpif(!prod, sourcemaps.init()))
-
-		// Merge all
-		merge(all, polyfills)
-			.pipe(order([
-				'polyfills.js',
-				'all.js',
-			]))
-			.pipe(concat(config.script + '.js'))
-			.pipe(gulpif(!prod, sourcemaps.write()))
-
-			// If production, strip debug and uglify
-			.pipe(gulpif(prod, stripDebug()))
-			.pipe(gulpif(prod, uglify({preserveComments:'some'})))
-			.pipe(gulp.dest(config.dist))
-			.on('end', cb)
-			.pipe(notify("JavaScript processed for " + (prod ? 'production' : 'development')))
+	function getDirectories(srcpath) {
+		return fs.readdirSync(srcpath).filter(function(file) {
+			return fs.statSync(path.join(srcpath, file)).isDirectory()
+		})
 	}
 
-	gulp.task('scriptprod', function(cb){
-		script(cb, true)
+
+
+	gulp.task('scriptshared', function(){
+		var dirs = getDirectories(config.src)
+		for(var i = dirs.length; i--;){
+			dirs[i] = config.dist + '/' + config.veeva.id + dirs[i].split('/').pop()
+		}
+		return gulp.src(mainBowerFiles())
+			.pipe(plumber(onError))
+			.pipe(filter('**/*.js'))
+			.pipe(addSrc.prepend(config.src + '/veeva-library-4.0.js'))
+			.pipe(addSrc.append(config.src + '/shared.js'))
+			//.pipe(concat('shared.js'))
+			.pipe(multiDest(dirs))
+			.pipe(notify("JavaScript processed"))
+	})
+	gulp.task('scriptunique', function(){
+		return gulp.src([
+				config.src + '/**/script.js',
+			])
+			.pipe(plumber(onError))
+			.pipe(rename(function(path){
+				path.dirname = config.veeva.id + path.dirname
+			}))
+			.pipe(gulp.dest(config.dist))
+	})
+	gulp.task('script', function(){
+		return runSequence('scriptunique', ['scriptshared'])
 	})
 
-	gulp.task('script', script)
+
 
 
 

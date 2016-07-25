@@ -1,0 +1,22 @@
+{
+  "name": "gulp-veeva",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Kennedy Rose <kennedy@kennedyrose.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fastclick": "^1.0.6",
+    "normalize-css": "^4.2.0"
+  }
+}
