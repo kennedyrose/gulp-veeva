@@ -8,30 +8,31 @@
 
 
 	// Self hiders toggle hide when clicked
-	var selfHiders = d.querySelectorAll('.selfHide')
-	for(i = selfHiders.length; i--;){
-		selfHiders[i].addEventListener('click', clickHide)
+	var selfTogglers = d.querySelectorAll('.self')
+	for(i = selfTogglers.length; i--;){
+		selfTogglers[i].addEventListener('click', selfToggle)
 	}
-	function clickHide(){
-		this.classList.toggle('hide')
+	function selfToggle(){
+		this.classList.toggle('active')
 	}
 
 
-	// Togglers toggle .hide class
+	// Togglers toggle .active class
 	var togglers = d.querySelectorAll('[data-toggle]')
 	for(i = togglers.length; i--;){
 		togglers[i].addEventListener('click', toggle)
 	}
 	function toggle(){
-		var el = d.querySelector(this.dataset.toggle)
-		el.classList.toggle('hide')
+		var el = d.querySelectorAll(this.dataset.toggle)
+		for(var i = el.length; i--;){
+			el[i].classList.toggle('active')
+		}
 	}
 
 
 
 	// Activators add .active class
 	var activators = d.querySelectorAll('[data-activate]')
-	console.log(activators)
 	for(i = activators.length; i--;){
 		activators[i].addEventListener('click', activate)
 	}
@@ -41,23 +42,37 @@
 	}
 
 
-	// Instants toggle .active class immediately after page loads
-	var instants = d.querySelectorAll('.instant')
-	if(instants.length){
-		setTimeout(fireInstants, 100)
+
+	var els = d.querySelectorAll('[data-activate-delay]'),
+		start = false,
+		delayers = []
+	for(i = els.length; i--;){
+		delayers.push({
+			el: els[i],
+			delay: els[i].dataset.activateSelf,
+			activated: false
+		})
 	}
-	function fireInstants(){
-		console.log(0)
-		for(var i = instants.length; i--;){
-			instants[i].classList.add('active')
+	function step(timestamp){
+		if(!start){
+			start = timestamp
+		}
+		var prog = timestmap - start,
+			found = false
+		for(var i = delayers.length; i--;){
+			if(delayers.activated === false){
+				found = true
+				if(delayers[i].delay <= prog){
+					delayers[i].el.classList.add('active')
+					delayers[i].activated = true
+				}
+			}
+		}
+		if(found === true){
+			requestAnimationFrame(step)
 		}
 	}
-
-
-
-
-
-
+	requestAnimationFrame(step)
 
 
 

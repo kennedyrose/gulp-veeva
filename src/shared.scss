@@ -1,11 +1,12 @@
 // Debug
-.btn, .pop{
+.btn{
 	//background-color: rgba(255, 0, 0, .6);
 }
 
 // Get rid of tap flash
 *{
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	tap-highlight-color: rgba(0,0,0,0);
 }
 
 // Global styles
@@ -58,7 +59,7 @@ $menu-button-w: 156px;
 
 
 .fullTap{
-	background-color: rgba(255, 0, 0, .6);
+	//background-color: rgba(255, 0, 0, .6);
 	z-index: 2;
 }
 
@@ -72,16 +73,14 @@ $menu-button-w: 156px;
 }
 
 
-// Popups
-.pop{
+// Layer types
+.top{
 	position: absolute;
 	opacity: 0;
 	top: 0;
 	left: 0;
-	z-index: 10;
+	z-index: 11;
 }
-
-// Layers
 .layer{
 	position: absolute;
 	opacity: 0;
@@ -89,6 +88,41 @@ $menu-button-w: 156px;
 	left: 0;
 	z-index: 2;
 }
+
+
+// Animation transitions
+.opacity{
+	transition: opacity .5s;
+	opacity: 0;
+	.active{
+		opacity: 1;
+	}
+}
+.hide{
+	display: none;
+	.active{
+		display: block;
+		opacity: 1;
+	}
+}
+.expand{
+	transition: transform .5s, opacity .5s;
+	transform: scale(0);
+	opacity: 0;
+	.active{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+.position{
+	transition: transform .5s, opacity .5s;
+	opacity: 0;
+	.active{
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+}
+
 
 
 // Buttons
