@@ -58,7 +58,7 @@ module.exports = function(gulp, config, plugins){
 		var dirs = getDirectories(config.build),
 			str = []
 		for(var i = dirs.length; i--;){
-			str.push('zip -r ' + dir + '/' + config.build + '/' + dirs[i] + '.zip ' + dirs[i])
+			str.push('zip -r "' + dir + '/' + config.build + '/' + dirs[i] + '.zip" "' + dirs[i] + '"')
 		}
 		return gulp.src('')
 			.pipe(plumber(onError))

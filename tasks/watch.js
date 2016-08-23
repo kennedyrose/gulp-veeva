@@ -13,7 +13,7 @@ module.exports = function(gulp, config, plugins){
 			config.src + '/**/*.{png,jpg,gif,psd}',
 			'!' + config.src + '/' + config.img + '/sprite**',
 			'!' + config.src + '/' + config.img + '/sprite**/*.svg',
-		], ['veevaimg'])
+		], ['img'])
 
 
 		// Reload browser
