@@ -8,6 +8,7 @@
 ## Installation
 - `git clone https://ken85rose@bitbucket.org/ken85rose/gulp-veeva.git`
 - `npm install`
+- `bower install`
 - Open the config.js file and change veeva.id to whatever the slides are to be named.
 
 ## To Do
