@@ -93,7 +93,14 @@ module.exports = function(gulp, config, plugins){
 			.on('end', cb)
 			.pipe(notify('Images processed'))
 	})
-	gulp.task('img', ['bg', 'tn', 'otherimg', 'slide'])
+	gulp.task('img', function(cb){
+		runSequence(
+			['bg'],
+			['tn'],
+			['otherimg'],
+			['slide'],
+			cb)
+	})
 
 
 }
