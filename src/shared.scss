@@ -94,34 +94,45 @@ $menu-button-w: 156px;
 .opacity{
 	transition: opacity .5s;
 	opacity: 0;
-	.active{
-		opacity: 1;
+	&.active{
+		opacity: 1 !important;
 	}
 }
 .hide{
 	display: none;
-	.active{
+	&.active{
 		display: block;
-		opacity: 1;
+		opacity: 1 !important;
 	}
 }
 .expand{
 	transition: transform .5s, opacity .5s;
 	transform: scale(0);
 	opacity: 0;
-	.active{
-		transform: scale(1);
-		opacity: 1;
+	&.active{
+		transform: scale(1) !important;
+		opacity: 1 !important;
 	}
 }
 .position{
 	transition: transform .5s, opacity .5s;
 	opacity: 0;
-	.active{
-		transform: translate(0, 0);
-		opacity: 1;
+	&.active{
+		transform: translate(0, 0) !important;
+		opacity: 1 !important;
 	}
 }
+.height{
+	transition: transform .5s, opacity .1s;
+	transform-origin: 50% 100%;
+	transform: scaleY(0);
+	opacity: 0;
+	&.active{
+		transform: scaleY(1) !important;
+		opacity: 1 !important;
+	}
+}
+
 
 
 
