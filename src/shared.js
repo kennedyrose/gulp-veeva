@@ -1,26 +1,27 @@
 // Global scripts
 !function(w,d,u){'use strict'
 
-	var i
+	var i, els
 
 
 
 
 
-	// Self hiders toggle hide when clicked
-	var selfTogglers = d.querySelectorAll('.self')
-	for(i = selfTogglers.length; i--;){
-		selfTogglers[i].addEventListener('click', selfToggle)
+	// Self hiders toggle active when clicked
+	els = d.querySelectorAll('.self')
+	for(i = els.length; i--;){
+		els[i].addEventListener('click', selfToggle)
 	}
 	function selfToggle(){
 		this.classList.toggle('active')
 	}
 
 
+
 	// Togglers toggle .active class
-	var togglers = d.querySelectorAll('[data-toggle]')
-	for(i = togglers.length; i--;){
-		togglers[i].addEventListener('click', toggle)
+	els = d.querySelectorAll('[data-toggle]')
+	for(i = els.length; i--;){
+		els[i].addEventListener('click', toggle)
 	}
 	function toggle(){
 		var el = d.querySelectorAll(this.dataset.toggle)
@@ -32,19 +33,65 @@
 
 
 	// Activators add .active class
-	var activators = d.querySelectorAll('[data-activate]')
-	for(i = activators.length; i--;){
-		activators[i].addEventListener('click', activate)
+	els = d.querySelectorAll('[data-activate]')
+	for(i = els.length; i--;){
+		els[i].addEventListener('click', activate)
 	}
 	function activate(){
-		var el = d.querySelector(this.dataset.activate)
-		el.classList.add('active')
+		var els = d.querySelectorAll(this.dataset.activate)
+		for(var i = els.length; i--;){
+			els[i].classList.add('active')
+		}
 	}
 
 
 
-	var els = d.querySelectorAll('[data-activate-delay]'),
-		start = false,
+	// Removes .active class
+	els = d.querySelectorAll('[data-deactivate]')
+	for(i = els.length; i--;){
+		els[i].addEventListener('click', deactivate)
+	}
+	function deactivate(){
+		var els = d.querySelectorAll(this.dataset.activate)
+		for(var i = els.length; i--;){
+			els[i].classList.remove('active')
+		}
+	}
+
+
+
+	// Activate list adds .active class one after the other after subsequent clicks
+	els = d.querySelectorAll('[data-activate-list]')
+	for(i = els.length; i--;){
+		els[i].addEventListener('click', activateList)
+	}
+	function activateList(){
+		var list = this.dataset.activateList.split(',')
+		for(var i = list.length; i--;){
+			list[i] = list[i].trim()
+		}
+		if(this.dataset.lastActive){
+			var cursor = list.indexOf(this.dataset.lastActive) + 1
+		}
+		else{
+			cursor = 0
+		}
+		if(cursor <= list.length - 1){
+			this.dataset.lastActive = list[cursor]
+			var activated = d.querySelectorAll(list[cursor])
+			for(i = activated.length; i--;){
+				activated[i].classList.add('active')
+			}
+		}
+	}
+
+
+
+
+
+	// Adds .activate class to self on given delay
+	els = d.querySelectorAll('[data-activate-delay]'),
+	var start = false,
 		delayers = []
 	for(i = els.length; i--;){
 		delayers.push({
@@ -57,7 +104,7 @@
 		if(!start){
 			start = timestamp
 		}
-		var prog = timestmap - start,
+		var prog = timestamp - start,
 			found = false
 		for(var i = delayers.length; i--;){
 			if(delayers.activated === false){
@@ -73,6 +120,7 @@
 		}
 	}
 	requestAnimationFrame(step)
+
 
 
 

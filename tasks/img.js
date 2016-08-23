@@ -99,7 +99,8 @@ module.exports = function(gulp, config, plugins){
 			['tn'],
 			['otherimg'],
 			['slide'],
-			cb)
+			cb
+		)
 	})
 
 

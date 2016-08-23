@@ -1,7 +1,14 @@
-// Debug
+// Debug stuff
 .btn{
 	//background-color: rgba(255, 0, 0, .6);
 }
+*{
+	//background-image: none !important;
+}
+#slide{
+	//opacity: .1;
+}
+
 
 // Get rid of tap flash
 *{
@@ -28,7 +35,7 @@ img{
 
 
 // Menu buttons
-$menu-button-w: 156px;
+$menu-button-w: 182px;
 #menu{
 	.btn{
 		top: 0;
@@ -37,24 +44,21 @@ $menu-button-w: 156px;
 		z-index: 100;
 	}
 }
-#mnu6{
+#mnu5{
 	right: 0;
 }
-#mnu5{
+#mnu4{
 	right: $menu-button-w;
 }
-#mnu4{
+#mnu3{
 	right: ($menu-button-w * 2);
 }
-#mnu3{
+#mnu2{
 	right: ($menu-button-w * 3);
 }
-#mnu2{
-	right: ($menu-button-w * 4);
-}
 #mnu1{
-	right: ($menu-button-w * 5);
-	width: 72px !important;
+	right: ($menu-button-w * 4);
+	width: 122px !important;
 }
 
 
@@ -80,6 +84,10 @@ $menu-button-w: 156px;
 	top: 0;
 	left: 0;
 	z-index: 11;
+	transition: opacity .5s;
+	&.active{
+		opacity: 1;
+	}
 }
 .layer{
 	position: absolute;
@@ -87,6 +95,10 @@ $menu-button-w: 156px;
 	top: 0;
 	left: 0;
 	z-index: 2;
+	transition: opacity .5s;
+	&.active{
+		opacity: 1;
+	}
 }
 
 
@@ -95,13 +107,13 @@ $menu-button-w: 156px;
 	transition: opacity .5s;
 	opacity: 0;
 	&.active{
-		opacity: 1 !important;
+		opacity: 1;
 	}
 }
 .hide{
 	display: none;
 	&.active{
-		display: block;
+		display: block !important;
 		opacity: 1 !important;
 	}
 }
@@ -110,16 +122,16 @@ $menu-button-w: 156px;
 	transform: scale(0);
 	opacity: 0;
 	&.active{
-		transform: scale(1) !important;
-		opacity: 1 !important;
+		transform: scale(1);
+		opacity: 1;
 	}
 }
 .position{
 	transition: transform .5s, opacity .5s;
 	opacity: 0;
 	&.active{
-		transform: translate(0, 0) !important;
-		opacity: 1 !important;
+		transform: translate(0, 0);
+		opacity: 1;
 	}
 }
 .height{
@@ -134,6 +146,22 @@ $menu-button-w: 156px;
 }
 
 
+// Infinite animations
+@keyframes fading{
+	0%, 100%: {
+		opacity: 0;
+	},
+	50%: {
+		opacity: 1;
+	}
+}
+.infiteFade{
+	opacity: 0;
+	&.active{
+		animation: fading 2s infinite;
+		opacity: 1 !important;
+	}
+}
 
 
 // Buttons
