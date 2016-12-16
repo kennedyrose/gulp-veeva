@@ -5,7 +5,6 @@ html
 		meta(charset='utf-8')
 		meta(http-equiv='X-UA-Compatible' content='IE=edge')
 		meta(name='viewport' content='width=device-width, initial-scale=1.0')
-		link(rel='stylesheet' type='text/css' href='normalize.css')
 		link(rel='stylesheet' type='text/css' href='shared.css')
 		link(rel='stylesheet' type='text/css' href='style.css')
 		
@@ -26,12 +25,13 @@ html
 
 			block content
 
+			#tapArea
 
+			.btn#refBtn(data-toggle='#ref')
+			img#ref.hide.selfHide(src="img/ref.png")
 
 
 		// Footer start
-		script(src="fastclick.js")
-		script(src="veeva-library-4.0.js")
 		script(src="shared.js")
 		script(src="script.js")
 		// Footer end

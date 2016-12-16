@@ -1,0 +1,22 @@
+// Unique style
+$btnSize: 60px;
+#btn1, #btn2{
+	height: $btnSize;
+	width: $btnSize;
+	top: 305px;
+}
+#btn1{
+	left: 100px;
+}
+#btn2{
+	left: 604px;
+}
+.blurb{
+	position: absolute;
+	opacity: 0;
+	transition: opacity .5s;
+	z-index: 5;
+	&.active{
+		opacity: 1;
+	}
+}

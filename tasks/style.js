@@ -13,49 +13,34 @@ module.exports = function(gulp, config, plugins){
 	}
 
 
-	function getDirectories(srcpath) {
-		return fs.readdirSync(srcpath).filter(function(file) {
-			return fs.statSync(path.join(srcpath, file)).isDirectory()
-		})
+
+	function style(cb, prod){
+		gulp.src(mainBowerFiles())
+			.pipe(plumber(onError))
+			.pipe(filter('**/*.{scss,css}'))
+			.pipe(addSrc.append(config.src + '/' + config.style + '/**/*.scss'))
+			.pipe(gulpif(!prod, sourcemaps.init()))
+			.pipe(concat(config.style + '.css'))
+			.pipe(sass({outputStyle: 'compressed'}))
+			.pipe(autoprefixer({
+				browsers: config.browsers
+			}))
+			.pipe(gulpif(prod, csso()))
+			.pipe(sourcemaps.write())
+			.pipe(gulp.dest(config.dist))
+			// Inject into browser
+			.pipe(plugins.browserSync.stream())
+			.on('end', cb)
+			.pipe(notify("Sass processed for " + (prod ? 'production' : 'development')))
 	}
 
-
-
-	gulp.task('styleshared', function(){
-		var dirs = getDirectories(config.dist)
-		for(var i = dirs.length; i--;){
-			dirs[i] = config.dist + '/' + dirs[i]
-		}
-		return gulp.src(mainBowerFiles())
-			.pipe(plumber(onError))
-			.pipe(filter('**/*.{css,scss}'))
-			.pipe(addSrc.append(config.src + '/shared.scss'))
-			.pipe(sass())
-			//.pipe(concat('shared.css')
-			.pipe(multiDest(dirs))
-			.pipe(plugins.browserSync.stream())
-			.pipe(notify("CSS processed"))
-	})
-	gulp.task('styleunique', function(){
-		return gulp.src([
-				config.src + '/**/style.scss',
-			])
-			.pipe(plumber(onError))
-			.pipe(sass())
-			.pipe(rename(function(path){
-				path.dirname = config.veeva.id + path.dirname
-			}))
-			.pipe(gulp.dest(config.dist))
-			.pipe(plugins.browserSync.stream())
-	})
-	gulp.task('style', function(){
-		return runSequence('styleunique', ['styleshared'])
+	gulp.task('styleprod', function(cb){
+		style(cb, true)
 	})
 
+	gulp.task('style', style)
 
 
-
-
-
+	return style
 
 }

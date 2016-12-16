@@ -1,0 +1,31 @@
+// Unique style
+.prog{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	transition: opacity .5s;
+	&.active{
+		opacity: 1;
+	}
+}
+
+#btn1, #btn2, #btn3{
+	width: 900px;
+	height: 60px;
+	left: 65px;
+}
+#btn1{
+	top: 390px;
+}
+#btn2{
+	top: 450px;
+}
+#btn3{
+	top: 525px;
+}
+
+.overlay{
+	position: absolute;
+	z-index: 8;
+}

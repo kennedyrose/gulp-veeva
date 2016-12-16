@@ -1,0 +1,22 @@
+extends ../_template.pug
+
+block vars
+	- var bodyClass = ''
+
+block content
+	img#prog1.prog(src="img/row1.png")
+	img#prog2.prog(src="img/row2.png")
+	img#prog3.prog(src="img/row3.png")
+	img#prog4.prog(src="img/row4.png")
+	img#prog5.prog(src="img/row5.png")
+	img#prog6.prog(src="img/row6.png")
+
+
+	img.overlay#overlay1.hide(src="img/overlay1.png")
+	img.overlay#overlay2.hide(src="img/overlay2.png")
+	img.overlay#overlay3.hide(src="img/overlay3.png")
+
+
+	.btn#btn1(data-toggle="#overlay1")
+	.btn#btn2(data-toggle="#overlay2")
+	.btn#btn3(data-toggle="#overlay3")

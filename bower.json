@@ -1,22 +1,24 @@
 {
-  "name": "gulp-veeva",
-  "description": "",
+  "name": "kennedys-gulp",
+  "description": "Gulp project for applications/websites",
   "main": "index.js",
   "authors": [
     "Kennedy Rose <kennedy@kennedyrose.com>"
   ],
-  "license": "ISC",
-  "homepage": "",
+  "license": "MIT",
+  "homepage": "http://www.kennedyrose.com/",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "_config.js"
   ],
   "dependencies": {
-    "fastclick": "^1.0.6",
-    "normalize-css": "^4.2.0"
-  }
+    "normalize-css": "normalize.css#^4.1.1",
+    "fastclick": "^1.0.6"
+  },
+  "devDependencies": {}
 }

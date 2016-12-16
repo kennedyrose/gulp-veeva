@@ -1,0 +1,29 @@
+extends ../_template.pug
+
+block vars
+	- var bodyClass = ''
+
+block content
+
+
+	img#over1.overlay.selfHide.hide(src="img/2.png")
+	img#over2.overlay.selfHide.hide(src="img/3.png")
+	img#info.prog(src="img/4.png")
+
+	.btn#row1.hide(data-toggle="#over1")
+	.btn#row2.hide(data-toggle="#over2")
+
+	img.overlay#overlay1.hide(src="img/row1.png")
+	img.overlay#overlay2.hide(src="img/row2.png")
+	img.overlay#overlay3.hide(src="img/row3.png")
+
+
+	.btn#btn3(data-toggle="#overlay1")
+	.btn#btn4(data-toggle="#overlay2")
+	.btn#btn5(data-toggle="#overlay3")
+
+
+
+	//.btn#btn1
+	.btn#btn2(data-activate="#info")
+							

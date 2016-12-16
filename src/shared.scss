@@ -1,19 +1,9 @@
-// Debug stuff
-.btn{
-	//background-color: rgba(255, 0, 0, .6);
-}
-*{
-	//background-image: none !important;
-}
-#slide{
-	//opacity: .1;
-}
-
-
-// Get rid of tap flash
+// Debug
 *{
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	tap-highlight-color: rgba(0,0,0,0);
+}
+.btn, .pop{
+	//background-color: rgba(255, 0, 0, .6);
 }
 
 // Global styles
@@ -32,10 +22,17 @@ img{
 .hide{
 	display: none !important;
 }
+#tapArea{
+	position: absolute;
+	z-index: 8;
+	width: 100%;
+	height: 640px;
+	top: 60px;
+}
 
 
 // Menu buttons
-$menu-button-w: 182px;
+$menu-button-w: 156px;
 #menu{
 	.btn{
 		top: 0;
@@ -44,26 +41,29 @@ $menu-button-w: 182px;
 		z-index: 100;
 	}
 }
-#mnu5{
+#mnu6{
 	right: 0;
 }
-#mnu4{
+#mnu5{
 	right: $menu-button-w;
 }
-#mnu3{
+#mnu4{
 	right: ($menu-button-w * 2);
 }
-#mnu2{
+#mnu3{
 	right: ($menu-button-w * 3);
 }
-#mnu1{
+#mnu2{
 	right: ($menu-button-w * 4);
-	width: 122px !important;
+}
+#mnu1{
+	right: ($menu-button-w * 5);
+	width: 72px !important;
 }
 
 
 .fullTap{
-	//background-color: rgba(255, 0, 0, .6);
+	background-color: rgba(255, 0, 0, .6);
 	z-index: 2;
 }
 
@@ -77,91 +77,19 @@ $menu-button-w: 182px;
 }
 
 
-// Layer types
-.top{
+// Popups
+.pop{
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 1024px;
+	height: 768px;
 	position: absolute;
+	z-index: -1;
 	opacity: 0;
-	top: 0;
-	left: 0;
-	z-index: 11;
-	transition: opacity .5s;
-	&.active{
-		opacity: 1;
-	}
-}
-.layer{
-	position: absolute;
-	opacity: 0;
-	top: 0;
-	left: 0;
-	z-index: 2;
-	transition: opacity .5s;
-	&.active{
-		opacity: 1;
-	}
+	-webkit-transition: opacity .3s;
+	transition: opacity .3s;
 }
 
-
-// Animation transitions
-.opacity{
-	transition: opacity .5s;
-	opacity: 0;
-	&.active{
-		opacity: 1;
-	}
-}
-.hide{
-	display: none;
-	&.active{
-		display: block !important;
-		opacity: 1 !important;
-	}
-}
-.expand{
-	transition: transform .5s, opacity .5s;
-	transform: scale(0);
-	opacity: 0;
-	&.active{
-		transform: scale(1);
-		opacity: 1;
-	}
-}
-.position{
-	transition: transform .5s, opacity .5s;
-	opacity: 0;
-	&.active{
-		transform: translate(0, 0);
-		opacity: 1;
-	}
-}
-.height{
-	transition: transform 1.7s, opacity .3s;
-	transform-origin: 50% 100%;
-	transform: scaleY(0);
-	opacity: 0;
-	&.active{
-		transform: scaleY(1) !important;
-		opacity: 1 !important;
-	}
-}
-
-
-// Infinite animations
-@keyframes fading{
-	0%, 100%: {
-		opacity: 0;
-	},
-	50%: {
-		opacity: 1;
-	}
-}
-.infiteFade{
-	opacity: 0;
-	&.active{
-		animation: fading 2s infinite;
-		opacity: 1 !important;
-	}
-}
 
 
 // Buttons

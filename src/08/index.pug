@@ -1,0 +1,26 @@
+extends ../_template.pug
+
+block vars
+	- var bodyClass = ''
+
+block content
+
+
+	img#info1.selfHide.hide(src="img/info1.png")
+	img#info2.selfHide.hide(src="img/info2.png")
+	img#info3.selfHide.hide(src="img/info3.png")
+
+	.line#line1
+		img(src="img/line1.png")
+		.btn(data-toggle="#info1")
+	.line#line2
+		img(src="img/line2.png")
+		.btn(data-toggle="#info2")
+	.line#line3
+		img(src="img/line3.png")
+		.btn(data-toggle="#info3")
+
+
+	.btn#tap1.selfHide(data-activate="#line1")
+	.btn#tap2.selfHide(data-activate="#line2")
+	.btn#tap3.selfHide(data-activate="#line3")

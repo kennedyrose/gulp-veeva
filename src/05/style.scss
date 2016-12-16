@@ -1,0 +1,71 @@
+// Unique style
+.row{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.prog{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity .5s;
+	&.active{
+		opacity: 1;
+	}
+}
+.overlay{
+	&.active{
+		display: block;
+	}
+}
+#row1{
+	top: 303px
+}
+#row2{
+	top: 478px;
+}
+#row1, #row2{
+	left: 60px;
+	width: 900px;
+	height: 40px;
+}
+.overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8;
+}
+
+#btn1{
+	width: 60px;
+	height: 60px;
+	left: 100px;
+	top: 230px;
+}
+#btn2{
+	width: 120px;
+	height: 120px;
+	left: 80px;
+	top: 555px;
+}
+
+
+
+#btn3, #btn4, #btn5{
+	width: 900px;
+	height: 60px;
+	left: 65px;
+}
+#btn3{
+	top: 290px;
+}
+#btn4{
+	top: 400px;
+}
+#btn5{
+	top: 470px;
+}
+
+
